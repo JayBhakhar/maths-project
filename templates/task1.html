@@ -1,9 +1,12 @@
 {% extends "layout.html" %}
 {% block body %}
-<form method="POST" action="">
-    <h3 name="number">input n :- <input> </h3>
-    <h3 name="r">input r :- <input> </h3>
+<form>
+    <h3>input n :- <input name="number" value="{{ number }}"></h3>
+    <h3>input r :- <input name="r" value="{{ r }}"></h3>
     <button type="submit"> let's go </button>
 </form>
 
+{% for comb in combs %}
+<p>{{ comb }}</p>
+{% endfor %}
 {% endblock %}

@@ -9,23 +9,17 @@ app = Flask(__name__)
 def home():
     return render_template('layout.html')
 
-@app.route('/task1', methods=['GET', 'POST'])
+#task1?n=544&r=45
+
+@app.route('/task1')
 def task1():
-    if request.method == 'POST':
-        number_list = []
-        num = request.form.get('number')
-        for m in range(num):
-            m = m + 1
-            number_list.append(m)
-
-        def Set(arr, r):
-            return list(combinations(arr, r))
-
-        if __name__ == "__main__":
-            arr = number_list
-            r = request.form.get('r')
-            print(Set(arr, r))
-    return render_template('task1.html')
+    number = request.args.get('number', default='')
+    r = request.args.get('r', default='')
+    if number and r:
+        combs = combinations(range(int(number)), int(r))
+    else:
+        combs = []
+    return render_template('task1.html', combs=combs, number=number, r=r)
 
 
 @app.route('/task2', methods=['GET', 'POST'])
